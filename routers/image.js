@@ -17,11 +17,11 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     console.log(req.body);
-    const { title, url } = req.body;
-    if (!title || !url) {
+    const { title, url, userId } = req.body;
+    if (!title || !url || !userId) {
       res.status(400).send("Missing parameters to create image");
     } else {
-      const newImage = await Image.create({ title, url });
+      const newImage = await Image.create({ title, url, userId });
       res.send(newImage);
     }
   } catch (e) {
